@@ -40,33 +40,15 @@
 
 ### Ссылки на материалы
 
-- Разведочный анализ данных (EDA) - [Project_S3_EDA.ipynb](jupyter-notebooks/Project_S3_EDA.ipynb)
-- Очистка данных - [Project_S3_Clear_Data.ipynb](jupyter-notebooks/Project_S3_Clear_Data.ipynb)
-- Параллельное извлечение ключевых слов из отзывов - [Project_S3_Key_Words_Parallel.ipynb](jupyter-notebooks/Project_S3_Key_Words_Parallel.ipynb)
-- Объединение файлов с извлеченными ключевыми словами - [Project_S3_Join_Key_Words.ipynb](jupyter-notebooks/Project_S3_Join_Key_Words.ipynb)
-- Обучение модели - [Project_S3_Fine_tune_T5_for_generating_review.ipynb](jupyter-notebooks/Project_S3_Fine_tune_T5_for_generating_review.ipynb)
-- Проверка модели - [Project_S3_Inference.ipynb](jupyter-notebooks/Project_S3_Inference.ipynb)
-- Оценка качества модели - [Project_S3_model_evaluation.ipynb](jupyter-notebooks/Project_S3_model_evaluation.ipynb)
+- Блокнот с моделью в репозитории - [Model.ipynb](/Model.ipynb)
+- Блокнот с моделью в Google Colab -
+[https://colab.research.google.com/drive/1jsoo6QZ0yVHTca943IiHLOCob4Kzm8k7](https://colab.research.google.com/drive/1PhzcVHk922KQJ5lmNRUq5ZqrEEUnm4gm?usp=sharing)
+- Репозиторий с моделью YOLO 11 -
+[https://github.com/ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
+- Датасет ForestPersons -
+[https://huggingface.co/datasets/etri/ForestPersons](https://huggingface.co/datasets/etri/ForestPersons)
 
-### Ссылки на блокноты в Google Colab:
-
-- Очистка данных:
-https://colab.research.google.com/drive/1jsoo6QZ0yVHTca943IiHLOCob4Kzm8k7
-- Обучение модели (fine tuning модели T5) и загрузка в Hugging Face Hub:
-https://colab.research.google.com/drive/14Df2WVP6N-Wg2LKyv3h78sibDgab7OoP
-- Проверка инференса модели из загруженной в Hugging Face Hub:
-https://colab.research.google.com/drive/1Ttz2bvetcl2rxnnGadAxRoFZm1rkfu9F
 
 ### Текущее состояние проекта
 
-В первой части мы провели очистку данных, обучение модели T5 на части датасета, проверили работу полученной модели и сделали проект веб-приложения.
-Работы по подготовке и обучении выполнялись в Jupyter ноутбуках. Они загружены в репозиторий и в Google Colab. Блокнот с обучением модели в Google Colab не запускался, всё обучение проводилось на локальном компьютере с GPU, т.к. Google Colab не позволяет выполнять такие длительные операции без подписки.
-
-Во второй части проекта были выполнены следующие задачи:
-
-- выделение ключевых слов из отзывов с помощью предобученной модели T5;
-- обучение модели на всех входных данные, включая ключевые слова;
-- проведены эксперименты по обучении модели с использованием алгоритма LoRa;
-- оценка работы модели;
-- интеграция обученной модели в веб-приложение;
-- написание документации по веб-приложению.
+Модель YOLO11 была проверена на валидационной выборке датасета ForestPersons и показала, что не всегда работоспособна. Иногда она определяет человека, как чужеродный предмет (например, сноуборд), что все еще может решить поставленную задачу, так как подобных предметов в лесу быть не должно. Но также иногда она определяет человека как животных (на одной фотографии определила человека как птицу). Это уже ошибка, которая мешает выполнению поставленной задачи, так как птицы часто встречаются в лесу и при определении человека как птицы, человек найден не будет. В самых плохих случаях она вообще не может определить человека на фотографии (показано в примере). Возможным вариантом решения является дообучение модели на датасете ForestPersons.
